@@ -1,0 +1,63 @@
+<% const activePage = 'cong-khai' %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Công khai - MẦM NON XUÂN KHOA</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🌼 MẦM NON XUÂN KHOA</div>
+    <nav>
+  <ul>
+    <li><a href="/" class="<%= activePage === 'trang-chu' ? 'active' : '' %>">Trang chủ</a></li>
+    
+    <li class="dropdown">
+      <a href="#" class="dropbtn <%= activePage === 'gioi-thieu' ? 'active' : '' %>">
+        Giới thiệu <span class="arrow">▼</span>
+      </a>
+      <ul class="dropdown-content">
+        <li><a href="/gioi-thieu-chung">Giới thiệu chung</a></li>
+        <li><a href="/co-so-vat-chat">Cơ sở vật chất</a></li>
+        <li><a href="/doi-ngu-giao-vien">Đội ngũ giáo viên</a></li>
+        <li><a href="/quan-diem-giao-duc">Quan điểm giáo dục</a></li>
+        <li><a href="/muc-tieu-dao-tao">Mục tiêu đào tạo</a></li>
+      </ul>
+    </li>
+
+    <li><a href="/tuyen-sinh" class="<%= activePage === 'tuyen-sinh' ? 'active' : '' %>">Tuyển sinh</a></li>
+    <li><a href="/cong-khai" class="<%= activePage === 'cong-khai' ? 'active' : '' %>">Công khai</a></li>
+    <li><a href="/thong-ke" class="<%= activePage === 'thong-ke' ? 'active' : '' %>">Thống kê</a></li>
+    <li><a href="/lien-he" class="<%= activePage === 'lien-he' ? 'active' : '' %>">Liên hệ</a></li>
+  </ul>
+</nav>
+  </header>
+
+  <div class="container">
+    <h1>📢 Thông tin công khai</h1>
+
+    <section>
+      <h2>🏫 Cơ sở vật chất</h2>
+      <p></p>
+    </section>
+
+    <section>
+      <h2>👩‍🏫 Đội ngũ giáo viên</h2>
+      <p></p>
+    </section>
+
+    <section>
+      <h2>💰 Học phí năm học 2025-2026</h2>
+      <p></p>
+    </section>
+
+    <section>
+      <h2>📄 Văn bản pháp lý</h2>
+      <p></p>
+    </section>
+  </div>
+</body>
+
+</html>

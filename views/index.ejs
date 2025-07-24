@@ -1,0 +1,935 @@
+  <% const activePage = 'trang-chu' %>
+  <!DOCTYPE html>
+  <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sunflower Kids - Trường Mầm Non</title>
+    <link rel="stylesheet" href="/css/style.css" />
+
+  </head>
+  <body>
+    <header>
+      <div class="logo">🌼 MẦM NON XUÂN KHOA</div>
+
+      <nav>
+        <ul>
+          <li><a href="/" class="<%= activePage === 'trang-chu' ? 'active' : '' %>">Trang chủ</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropbtn <%= activePage === 'gioi-thieu' ? 'active' : '' %>">
+              Giới thiệu <span class="arrow">▼</span>
+            </a>
+            <ul class="dropdown-content">
+              <li><a href="/gioi-thieu-chung">Giới thiệu chung</a></li>
+              <li><a href="/co-so-vat-chat">Cơ sở vật chất</a></li>
+              <li><a href="/doi-ngu-giao-vien">Đội ngũ giáo viên</a></li>
+              <li><a href="/quan-diem-giao-duc">Quan điểm giáo dục</a></li>
+              <li><a href="/muc-tieu-dao-tao">Mục tiêu đào tạo</a></li>
+            </ul>
+          </li>
+          <li><a href="/tuyen-sinh" class="<%= activePage === 'tuyen-sinh' ? 'active' : '' %>">Tuyển sinh</a></li>
+          <li><a href="/cong-khai" class="<%= activePage === 'cong-khai' ? 'active' : '' %>">Công khai</a></li>
+          <li><a href="/thong-ke" class="<%= activePage === 'thong-ke' ? 'active' : '' %>">Thống kê</a></li>
+          <li><a href="/lien-he" class="<%= activePage === 'lien-he' ? 'active' : '' %>">Liên hệ</a></li>
+        </ul>
+      </nav>
+
+      <!-- THANH TÌM KIẾM -->
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Tìm nội dung...">
+        <div id="search-controls" style="gap: 6px; margin-left: 8px;">
+
+          <button id="search-prev" class="nav-btn" title="Kết quả trước">⬅️</button>
+          <button id="search-next" class="nav-btn" title="Kết quả sau">➡️</button>
+          <button id="search-close" class="close-btn" title="Đóng tìm kiếm">✖️</button>
+        </div>
+      </div>
+
+      <!-- KẾT QUẢ TÌM KIẾM (DUY NHẤT 1 CÁI) -->
+      <div id="search-results" class="search-results"></div>
+    </header>
+
+    <div class="hero">
+      <div class="overlay"></div> <!-- Thêm lớp overlay -->
+      <div class="slides">
+    <img src="/images/school-hero-backgound.jpg" alt="Hình nền 1">
+    <img src="/images/image.png" alt="Hình nền 2">
+    <img src="/images/backgound-hero3.png" alt="Hình nền 3">
+      </div class='content'>
+      <h1>Nơi ươm mầm yêu thương</h1>
+      <p>Trường mầm non ....</p>
+      <a href="/tuyen-sinh" class="btn">Xem thông tin tuyển sinh</a>
+    </div>
+
+    <!-- Slider ảnh hoạt động -->
+    <div class="slider">
+      <img src="https://cdn.pixabay.com/photo/2017/08/05/12/42/kids-2582742_1280.jpg" alt="Ảnh 1">
+      <img src="https://cdn.pixabay.com/photo/2016/04/17/20/23/children-1335575_1280.jpg" alt="Ảnh 2">
+      <img src="https://cdn.pixabay.com/photo/2018/04/16/19/07/kids-3325637_1280.jpg" alt="Ảnh 3">
+    </div>
+
+    <style>
+      .slider {
+        width: 90%;
+        max-width: 1000px;
+        margin: 50px auto;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .slider img {
+        width: 100%;
+        display: block;
+      }
+    </style>
+
+    <script>
+      let slideIndex = 0;
+      showSlides();
+      function showSlides() {
+        const slides = document.querySelectorAll('.slider img');
+        for (let i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1; }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 3000);
+      }
+    </script>
+
+    <!-- Nút Chat Zalo -->
+    <a href="https://zalo.me/0901234567" class="chat-btn" target="_blank">💬 Chat Zalo</a>
+
+    <!-- Hiệu ứng cuộn mượt -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+      ScrollReveal().reveal('.feature', { delay: 200 });
+      ScrollReveal().reveal('.testimonial', { delay: 300, origin: 'bottom' });
+      ScrollReveal().reveal('.events h2, .event', { delay: 200 });
+    </script>
+
+    <!-- Nội dung chính -->
+    <div class="container-two-column">
+      <main class="main-content">
+        <!-- Giới thiệu -->
+        <div class="introduction-upgraded">
+          <div class="introduction-container">
+            <div class="introduction-image">
+              <img src="/images/gioi-thieu-chung.jpg" alt="Giới thiệu">
+            </div>
+            <div class="introduction-content">
+              <h2>🌼 Giới thiệu chung</h2>
+              <p><strong>Trường Mầm Non Xuân Khoa</strong> được thành lập năm 2018... .</p>
+              <p>🏫 Trường nằm ở vị trí mặt tiền, thuận lợi cho việc đưa đón trẻ bằng nhiều phương tiện.<br>
+                🎨 Môi trường học tập thân thiện, sáng tạo và an toàn.<br>
+                🍎 Thực đơn dinh dưỡng chuẩn, nguyên liệu sạch mỗi ngày.</p>
+              <a href="/gioi-thieu-chung" class="btn">Xem thêm >></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cập nhật tuần học -->
+        <div class="weekly-updates">
+          <ul class="tabs">
+            <li><a href="#be" class="active">Bé</a></li>
+            <li><a href="#lich-hoc">Lịch học</a></li>
+            <li><a href="#hoat-dong">Hoạt động</a></li>
+            <li><a href="#thuc-don">Thực đơn</a></li>
+            <li><a href="#su-kien">Sự kiện</a></li>
+          </ul>
+          <!-- Trong tab #be -->
+          <div id="be" class="tab-content active-tab">
+            <div class="update-item">
+              <img src="/images/khoi-la-tuan-1.jpg" alt="Khối Lá tuần 1">
+              <div class="update-details">
+                <h3>Khối Lá - Tuần 1: Đồ dùng, Trang phục học sinh lớp Một</h3>
+                <p>Chủ đề: Trường Tiểu học (2 tuần) - Tuần 1: Đồ dùng, trang phục học sinh lớp Một (từ 12/05 đến 16/05/2025)</p>
+                <!-- Thêm link đọc thêm -->
+                <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+  
+
+            <div class="update-item">
+              <img src="/images/khoi-la-tuan-3.jpg" alt="Khối Lá tuần 3">
+              <div class="update-details">
+                <h3>Khối Lá - Tuần 3: Bác Hồ kính yêu</h3>
+                <p>Chủ đề: Quê Hương - Thủ đô Bắc Ninh (3 tuần) - Tuần 3: Bác Hồ kính yêu (từ ngày 05/05 đến 09/05/2025)</p>
+                 <!-- Thêm link đọc thêm -->
+                 <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-3" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+  <!-- ... các mục khác ... -->
+</div>
+                   <!-- Tab Lịch học -->
+          <div id="lich-hoc" class="tab-content">
+            <h2 style="color: #d35400; font-family: 'Indie Flower', cursive; text-align: center; margin-bottom: 15px;">Lịch học tuần này</h2>
+            <p style="text-align: center; margin-bottom: 25px;"><strong>Thời gian:</strong> Từ 07:30 - 16:30</p>
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Thứ</th>
+                  <th>Thứ 2</th>
+                  <th>Thứ 3</th>
+                  <th>Thứ 4</th>
+                  <th>Thứ 5</th>
+                  <th>Thứ 6</th>
+                  <th>Thứ 7</th>
+                  <th>Chủ Nhật</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Tiết 1 -->
+                <tr>
+                  <td class="time-slot">07:30 - 08:30</td>
+                  <td>Khởi động buổi sáng<br>(Làm quen đồ dùng)</td>
+                  <td>Khởi động buổi sáng<br>(Làm quen đồ dùng)</td>
+                  <td>Khởi động buổi sáng<br>(Làm quen đồ dùng)</td>
+                  <td>Khởi động buổi sáng<br>(Làm quen đồ dùng)</td>
+                  <td>Khởi động buổi sáng<br>(Làm quen đồ dùng)</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 2 -->
+                <tr>
+                  <td class="time-slot">08:30 - 09:30</td>
+                  <td>Học toán qua trò chơi<br>(Số đếm, hình khối)</td>
+                  <td>Học toán qua trò chơi<br>(Số đếm, hình khối)</td>
+                  <td>Học toán qua trò chơi<br>(Số đếm, hình khối)</td>
+                  <td>Học toán qua trò chơi<br>(Số đếm, hình khối)</td>
+                  <td>Học toán qua trò chơi<br>(Số đếm, hình khối)</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 3 -->
+                <tr>
+                  <td class="time-slot">09:30 - 10:00</td>
+                  <td>Phát triển ngôn ngữ<br>(Trò chuyện, kể chuyện)</td>
+                  <td>Phát triển ngôn ngữ<br>(Trò chuyện, kể chuyện)</td>
+                  <td>Phát triển ngôn ngữ<br>(Trò chuyện, kể chuyện)</td>
+                  <td>Phát triển ngôn ngữ<br>(Trò chuyện, kể chuyện)</td>
+                  <td>Phát triển ngôn ngữ<br>(Trò chuyện, kể chuyện)</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 4 -->
+                <tr>
+                  <td class="time-slot">10:00 - 10:30</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 5 -->
+                <tr>
+                  <td class="time-slot">10:30 - 11:30</td>
+                  <td>Vui chơi ngoài trời<br>(Thể thao, vận động)</td>
+                  <td>Vui chơi ngoài trời<br>(Thể thao, vận động)</td>
+                  <td>Vui chơi ngoài trời<br>(Thể thao, vận động)</td>
+                  <td>Vui chơi ngoài trời<br>(Thể thao, vận động)</td>
+                  <td>Vui chơi ngoài trời<br>(Thể thao, vận động)</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 6 -->
+                <tr>
+                  <td class="time-slot">11:30 - 12:00</td>
+                  <td>Ăn trưa &amp; Ngủ trưa</td>
+                  <td>Ăn trưa &amp; Ngủ trưa</td>
+                  <td>Ăn trưa &amp; Ngủ trưa</td>
+                  <td>Ăn trưa &amp; Ngủ trưa</td>
+                  <td>Ăn trưa &amp; Ngủ trưa</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 7 -->
+                <tr>
+                  <td class="time-slot">13:00 - 14:00</td>
+                  <td>Hoạt động nghệ thuật<br>(Vẽ tranh, thủ công)</td>
+                  <td>Hoạt động nghệ thuật<br>(Vẽ tranh, thủ công)</td>
+                  <td>Hoạt động nghệ thuật<br>(Vẽ tranh, thủ công)</td>
+                  <td>Hoạt động nghệ thuật<br>(Vẽ tranh, thủ công)</td>
+                  <td>Hoạt động nghệ thuật<br>(Vẽ tranh, thủ công)</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 8 -->
+                <tr>
+                  <td class="time-slot">14:00 - 15:00</td>
+                  <td>Hoạt động nhóm<br>(Giải quyết vấn đề, hợp tác)</td>
+                  <td>Hoạt động nhóm<br>(Giải quyết vấn đề, hợp tác)</td>
+                  <td>Hoạt động nhóm<br>(Giải quyết vấn đề, hợp tác)</td>
+                  <td>Hoạt động nhóm<br>(Giải quyết vấn đề, hợp tác)</td>
+                  <td>Hoạt động nhóm<br>(Giải quyết vấn đề, hợp tác)</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 9 -->
+                <tr>
+                  <td class="time-slot">15:00 - 15:30</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td>Thư giãn &amp; Snack time</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+                <!-- Tiết 10 -->
+                <tr>
+                  <td class="time-slot">15:30 - 16:30</td>
+                  <td>Tổng kết ngày<br>(Chia sẻ cảm xúc, đánh giá)</td>
+                  <td>Tổng kết ngày<br>(Chia sẻ cảm xúc, đánh giá)</td>
+                  <td>Tổng kết ngày<br>(Chia sẻ cảm xúc, đánh giá)</td>
+                  <td>Tổng kết ngày<br>(Chia sẻ cảm xúc, đánh giá)</td>
+                  <td>Tổng kết ngày<br>(Chia sẻ cảm xúc, đánh giá)</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                  <td style="background-color: #ffebee;">Ngày nghỉ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="hoat-dong" class="tab-content">
+            <p>Hoạt động sẽ được hiển thị ở đây...</p>
+          </div>
+          <!-- Trong tab #thuc-don -->
+<div id="thuc-don" class="tab-content">
+  <div class="update-item">
+    <img src="/images/thuc-don-tuan-1.jpg" alt="Thực đơn tuần 1">
+    <div class="update-details">
+      <h3>Thực đơn tuần 1 (12/05 - 16/05/2025)</h3>
+      <p>🍽️ Thứ 2: Cơm, thịt kho, rau luộc, canh bí<br>
+        🍽️ Thứ 3: Mì xào, chả giò, canh chua<br>
+        🍽️ Thứ 4: Cơm, cá kho, rau xào, canh cải<br>
+        🍽️ Thứ 5: Bún bò, rau sống<br>
+        🍽️ Thứ 6: Cơm, gà xào sả ớt, canh bầu</p>
+      <!-- Thay thế link "Đọc thêm" cũ bằng đoạn này -->
+      <div class="read-more-container">
+        <a href="/bai-viet-chi-tiet?id=thuc-don-tuan-1" class="read-more-link">
+          <span class="read-more-text">Đọc thêm</span>
+          <span class="read-more-icon">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+          <div id="su-kien" class="tab-content">
+            <div class="update-item">
+              <img src="/images/su-kien-le-hoi.jpg" alt="Lễ hội mùa hè">
+              <div class="update-details">
+                <h3>🎉 Lễ hội mùa hè 2025 - 25/05/2025</h3>
+                <p>Chương trình văn nghệ, trò chơi dân gian, tiệc buffet cho bé.</p>
+              </div>
+              <!-- Thêm link đọc thêm -->
+                <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+            </div>
+
+            <div class="update-item">
+              <img src="/images/su-kien-tham-quan.jpg" alt="Tham quan trại bò sữa">
+              <div class="update-details">
+                <h3>🚌 Tham quan trại bò sữa - 05/06/2025</h3>
+                <p>Khám phá quy trình vắt sữa, cho bò ăn, học về dinh dưỡng.</p>
+              </div>
+              <!-- Thêm link đọc thêm -->
+                <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+               <!-- Khung cập nhật tuần học nhân bản (Góc phụ huynh & Dạy) -->
+        <div class="weekly-updates">
+          <ul class="tabs">
+            <!-- Sửa href để không trùng -->
+            <li><a href="#gocphu-goc-phu-huynh" class="active">Góc phụ huynh</a></li>
+            <!-- Sửa href để không trùng -->
+            <li><a href="#gocphu-day">Dạy</a></li>
+          </ul>
+          <!-- Sửa id để không trùng -->
+          <div id="gocphu-goc-phu-huynh" class="tab-content active-tab">
+            <div class="update-item">
+              <img src="/images/meo-giao-tiep.jpg" alt="Mẹo giao tiếp">
+              <div class="update-details">
+                <h3>🗣️ Mẹo giao tiếp hiệu quả với con</h3>
+                <p>Lắng nghe tích cực, dùng ngôn ngữ cơ thể, đặt câu hỏi mở giúp bé chia sẻ nhiều hơn với chúng ta nhé 
+                  các phụ huynh.</p>
+                  <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>  
+              </div>
+                         
+            </div>
+            
+            <div class="update-item">
+              <img src="/images/thoi-quen-tot.jpg" alt="Thói quen tốt">
+              <div class="update-details">
+                <h3>🌟 Nuôi dưỡng thói quen tốt cho bé ở nhà</h3>
+                <p>Cùng bé dậy sớm, dọn dẹp đồ chơi, đọc sách mỗi ngày để tạo nền nếp, tiền để cho các bé sau này phát triển 
+                  toàn diện nhé các phụ huynh.</p>
+                  <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <!-- Sửa id để không trùng -->
+          <div id="gocphu-day" class="tab-content">
+            <div class="update-item">
+              <img src="/images/day-toan-bang-tro-choi.jpg" alt="Dạy toán bằng trò chơi">
+              <div class="update-details">
+                <h3>🎲 Dạy Toán cho bé Mầm non qua trò chơi</h3>                
+                <p>Sử dụng đồ chơi xếp hình, xúc xắc, bài hát để dạy đếm số và hình dạng.</p>
+                <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="update-item">
+              <img src="/images/ke-chuyen-cho-be.jpg" alt="Kể chuyện">
+              <div class="update-details">
+                <h3>📖 Nghệ thuật kể chuyện cho trẻ Mầm non</h3>
+                <p>Thay đổi giọng nói, dùng đạo cụ, khuyến khích bé đoán tiếp hoặc nhập vai.</p>
+                <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Khung cập nhật tuần học mới (Tin tức & Thông báo) -->
+<div class="weekly-updates">
+  <ul class="tabs">
+    <!-- Dùng href duy nhất -->
+    <li><a href="#tintuc-tin-tuc" class="active">Tin tức</a></li>
+    <!-- Dùng href duy nhất -->
+    <li><a href="#tintuc-thong-bao">Thông báo</a></li>
+  </ul>
+  <!-- Dùng id duy nhất, khớp với href -->
+  <div id="tintuc-tin-tuc" class="tab-content active-tab">
+    <div class="update-item">
+      <img src="/images/tin-tuc-1.jpg" alt="Tin tức 1"> <!-- Dùng ảnh thực tế -->
+      <div class="update-details">
+        <h3>📢 Tin tức mới về kỳ nghỉ hè</h3>
+        <p>Thông tin chi tiết về lịch trình và hoạt động dự kiến cho kỳ nghỉ hè 2025.</p>
+        <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+      </div>
+    </div>
+    <div class="update-item">
+      <img src="/images/tin-tuc-2.jpg" alt="Tin tức 2"> <!-- Dùng ảnh thực tế -->
+      <div class="update-details">
+        <h3>🏆 Chúc mừng các bé đạt giải cuộc thi vẽ tranh</h3>
+        <p>Nhiều bé của trường đã đạt giải cao trong cuộc thi vẽ tranh cấp Quận.</p>
+        <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dùng id duy nhất, khớp với href -->
+  <div id="tintuc-thong-bao" class="tab-content">
+    <div class="update-item">
+       <img src="/images/thong-bao-1.jpg" alt="Thông báo 1"> <!-- Dùng ảnh thực tế -->
+      <div class="update-details">
+        <h3>🔔 Thông báo thu học phí học kỳ 2</h3>
+        <p>Thời hạn thu học phí học kỳ 2 là ngày 30/06/2025. Phụ huynh vui lòng nộp đúng hạn.</p>
+        <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+      </div>
+    </div>
+    <div class="update-item">
+       <img src="/images/thong-bao-2.jpg" alt="Thông báo 2"> <!-- Dùng ảnh thực tế -->
+      <div class="update-details">
+        <h3>🛠️ Bảo trì cơ sở vật chất</h3>
+        <p>Nhà trường sẽ tiến hành bảo trì khu vực sân chơi vào ngày 15/06/2025.</p>
+        <div class="read-more-container">
+                  <a href="/bai-viet-chi-tiet?id=khoi-la-tuan-1" class="read-more-link">
+                    <span class="read-more-text">Đọc thêm</span>
+                    <span class="read-more-icon">→</span>
+                  </a>
+                </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      </main>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="widget">
+          <h3>Tin nhanh</h3>
+          <p>Khối Lá - Kế hoạch trọng tâm tháng .../2025</p>
+        </div>
+        <div class="widget">
+          <h3>Album ảnh</h3>
+          <div class="image-gallery">
+            <img src="/images/album/nam-2024.jpg" alt="image">
+            <img src="/images/album/covid-19.jpg" alt="image">
+            <img src="/images/album/hop-mat-niem.jpg" alt="image">
+          </div>
+        </div>
+        <div class="widget">
+          <h3>Thống kê truy cập</h3>
+          <p>Tổng truy cập: <strong></strong></p>
+          <p>Người dùng hôm nay: <strong></strong></p>
+        </div>
+        <div class="widget">
+          <h3>Chơi cùng bé</h3>
+          <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="widget">
+          <h3>Danh mục</h3>
+          <ul>
+            <li><a href="/gioi-thieu">Giới thiệu</a></li>
+            <li><a href="/to-chuc">Tổ chức</a></li>
+            <li><a href="/lich-lam-viec">Lịch làm việc</a></li>
+            <li><a href="/hop-truc-tuyen">Họp trực tuyến</a></li>
+            <li><a href="/tuyen-sinh-dau-cap">Tuyển sinh đầu cấp</a></li>
+            <li><a href="/tai-nguyen">Tài nguyên</a></li>
+            <li><a href="/ba-cong-khai">Báo công khai</a></li>
+            <li><a href="/thong-ke">Thống kê</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <h2>🌼 TRƯỜNG MẦM NON XUÂN KHOA</h2>
+          <p>Nơi ươm mầm yêu thương</p>
+        </div>
+        <div class="footer-info">
+          <h3>📍 Thông tin liên hệ</h3>
+          <p>🏠 Địa chỉ trường</p>
+          <p>📞 <a href="tel:0901234567">0901.234.567</a></p>
+          <p>✉️ <a href="mailto:info@xuankhoa.edu.vn">info@xuankhoa.edu.vn</a></p>
+          <p>⏰ Thứ 2 - Thứ 7: 7:00 - 17:00</p>
+        </div>
+        <div class="footer-map">
+          <h3>📍 Google Map</h3>
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=..." 
+            width="100%" 
+            height="150" 
+            style="border:0; border-radius: 10px;" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MẦM NON XUÂN KHOA. 🌼</p>
+      </div>
+    </footer>
+
+    <!-- Tab Switcher -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+  // Lấy tất cả các tab container (giả sử mỗi .weekly-updates là một container)
+  const tabContainers = document.querySelectorAll('.weekly-updates');
+
+  // Duyệt qua từng container
+  tabContainers.forEach(container => {
+    // Lấy tất cả các tab và nội dung tab trong container cụ thể này
+    const tabs = container.querySelectorAll('.tabs a');
+    const contents = container.querySelectorAll('.tab-content');
+
+    // Kiểm tra nếu container có nội dung tab
+    if (contents.length > 0) {
+      // Hiển thị tab đầu tiên của container này
+      contents[0].classList.add('active-tab');
+    }
+
+    // Xử lý click tab trong container cụ thể này
+    tabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+
+        // Bỏ active khỏi tất cả tab trong container này
+        tabs.forEach(t => t.classList.remove('active'));
+
+        // Đánh dấu tab vừa click là active
+        e.target.classList.add('active');
+
+        // Bỏ active khỏi tất cả nội dung tab trong container này
+        contents.forEach(c => c.classList.remove('active-tab'));
+
+        // Hiển thị nội dung tab tương ứng trong container này
+        const targetContentId = e.target.getAttribute('href').substring(1); // Loại bỏ ký tự '#' đầu tiên
+        const targetContent = container.querySelector(`#${targetContentId}`); // Tìm trong container cụ thể
+        if (targetContent) {
+          targetContent.classList.add('active-tab');
+        }
+      });
+    });
+  });
+});
+
+    </script>
+
+    <script>
+    // Trạng thái tìm kiếm
+    const searchState = {
+      currentResultIndex: -1,
+      currentQuery: '',
+      searchResults: []
+    };
+
+    // Xóa dấu tiếng Việt
+    function removeDiacritics(str) {
+      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    // Hàm highlight an toàn
+    function highlightText(element, query) {
+      if (!query || !element || !element.childNodes) return;
+      const regex = new RegExp(`(${query})`, 'gi');
+
+      function walk(node) {
+        let child, next;
+        switch (node.nodeType) {
+          case 3: // Text node
+            if (regex.test(node.nodeValue)) {
+              const parent = node.parentNode;
+              const frag = document.createDocumentFragment();
+              const matches = node.nodeValue.split(regex);
+              matches.forEach((match, i) => {
+                if (i % 2 === 1) {
+                  const span = document.createElement('mark');
+                  span.textContent = match;
+                  frag.appendChild(span);
+                } else if (match) {
+                  frag.appendChild(document.createTextNode(match));
+                }
+              });
+              parent.replaceChild(frag, node);
+            }
+            break;
+          case 1: case 9: case 11:
+            child = node.firstChild;
+            while (child) {
+              next = child.nextSibling;
+              walk(child);
+              child = next;
+            }
+            break;
+        }
+      }
+      walk(element);
+    }
+
+    // Xóa highlight
+    function removeHighlight() {
+      document.querySelectorAll('mark').forEach(mark => {
+        const parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+      });
+    }
+
+    // Lưu lịch sử tìm kiếm
+    function saveSearchHistory(query) {
+      let history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+      history = history.filter(q => q !== query);
+      history.unshift(query);
+      history = history.slice(0, 5);
+      localStorage.setItem('searchHistory', JSON.stringify(history));
+    }
+
+    // Cuộn đến phần tử
+    function scrollToElement(el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // --- HÀM MỚI: Hiển thị thông báo "Không tìm thấy" ---
+    function showNoResultsMessage(query) {
+        const resultsContainer = document.getElementById('search-results');
+        resultsContainer.innerHTML = ''; // Xóa nội dung cũ
+
+        const noResultItem = document.createElement('div');
+        noResultItem.className = 'search-result-item';
+        noResultItem.style.fontStyle = 'italic';
+        noResultItem.style.color = '#7f8c8d';
+        noResultItem.style.textAlign = 'center';
+        noResultItem.style.padding = '20px';
+        noResultItem.textContent = `Không tìm thấy kết quả cho "${query}"`;
+
+        resultsContainer.appendChild(noResultItem);
+        resultsContainer.style.display = 'block'; // Hiển thị khung kết quả
+    }
+    // --- HẾT HÀM MỚI ---
+
+    // Hiển thị kết quả
+    function displayResults() {
+      const resultsContainer = document.getElementById('search-results');
+      resultsContainer.innerHTML = ''; // Xóa nội dung cũ
+
+      if (searchState.searchResults.length === 0) {
+          // Nếu không có kết quả, hiển thị thông báo "Không tìm thấy"
+          showNoResultsMessage(searchState.currentQuery);
+          return;
+      }
+
+      searchState.searchResults.forEach((result, i) => {
+        const item = document.createElement('div');
+        item.className = 'search-result-item';
+        if (i === 0) item.classList.add('active');
+
+        const context = result.context.length > 100 ? result.context.substr(0, 100) + '...' : result.context;
+        item.innerHTML = `<strong>${context}</strong>`;
+        item.onclick = () => goToResult(i);
+        resultsContainer.appendChild(item);
+      });
+
+      const count = document.createElement('div');
+      count.className = 'search-result-count';
+      count.textContent = `Kết quả: 1/${searchState.searchResults.length}`;
+      resultsContainer.appendChild(count);
+
+      resultsContainer.style.display = 'block'; // Hiển thị khung kết quả
+    }
+
+    // Cập nhật số kết quả
+    function updateResultCount() {
+      const countEl = document.querySelector('.search-result-count');
+      if (countEl && searchState.searchResults.length > 0) {
+        countEl.textContent = `Kết quả: ${searchState.currentResultIndex + 1}/${searchState.searchResults.length}`;
+      }
+    }
+
+    // Đi đến kết quả
+    function goToResult(index) {
+      if (index < 0 || index >= searchState.searchResults.length) return;
+      removeHighlight();
+      searchState.currentResultIndex = index;
+      highlightText(searchState.searchResults[index].element, searchState.currentQuery);
+      scrollToElement(searchState.searchResults[index].element);
+      document.querySelectorAll('.search-result-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+      updateResultCount();
+    }
+
+    // --- HÀM MỚI: Cập nhật giao diện điều khiển tìm kiếm ---
+    function updateSearchControls() {
+      const controls = document.getElementById('search-controls');
+      const prevBtn = document.getElementById('search-prev');
+      const nextBtn = document.getElementById('search-next');
+      const closeBtn = document.getElementById('search-close');
+
+      if (searchState.searchResults.length > 0) {
+          // Nếu có kết quả, hiển thị đầy đủ controls (mũi tên và close)
+          controls.style.display = 'flex';
+          prevBtn.style.display = 'flex';
+          nextBtn.style.display = 'flex';
+          closeBtn.style.display = 'flex';
+      } else if (searchState.currentQuery.trim() !== '') {
+          // Nếu có truy vấn nhưng không có kết quả, chỉ hiện close
+          controls.style.display = 'flex';
+          prevBtn.style.display = 'none';
+          nextBtn.style.display = 'none';
+          closeBtn.style.display = 'flex';
+      } else {
+          // Nếu không có truy vấn, ẩn toàn bộ controls
+          controls.style.display = 'none';
+      }
+    }
+    // --- HẾT HÀM MỚI ---
+
+    // Thực hiện tìm kiếm
+    function performSearch(query) {
+      // Luôn cập nhật truy vấn hiện tại
+      searchState.currentQuery = query.trim();
+
+      if (!searchState.currentQuery) {
+        closeSearch();
+        return;
+      }
+
+      removeHighlight();
+      searchState.searchResults = [];
+
+      const normalizedQuery = removeDiacritics(searchState.currentQuery.toLowerCase());
+      // ===TÌM KIẾM TOÀN DIỆN WEB ===
+      // Mở rộng phạm vi tìm kiếm để bao gồm nhiều loại phần tử văn bản hơn
+      const elements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, td, th, div.introduction-content, div.update-details, div.footer-info, div.hero, div.update-item, span:not(.nav-btn):not(.close-btn):not(.dropbtn), a:not(.chat-btn), .widget, .feature, .testimonial, .event, .tab-content, .widget p, .widget li, .update-details p, .footer-container *, .sidebar *'
+);
+// === HẾT PHẦN SỬA ===
+
+      elements.forEach(el => {
+        const text = el.innerText;
+        if (removeDiacritics(text).toLowerCase().includes(normalizedQuery)) {
+          const context = text.length > 100 ? text.substr(0, 100) + '...' : text;
+          searchState.searchResults.push({ element: el, context });
+        }
+      });
+
+      // Hiển thị kết quả (dù có hay không)
+      displayResults();
+      // Cập nhật giao diện điều khiển
+      updateSearchControls();
+
+      // Nếu có kết quả, đi tới kết quả đầu tiên
+      if (searchState.searchResults.length > 0) {
+        goToResult(0);
+      }
+      // Nếu không có kết quả, displayResults() đã hiển thị thông báo rồi
+    }
+
+    // Đóng tìm kiếm
+    function closeSearch() {
+      removeHighlight();
+      const input = document.getElementById('search-input');
+      input.value = '';
+      document.getElementById('search-results').style.display = 'none';
+      document.getElementById('search-controls').style.display = 'none'; // Ẩn toàn bộ controls khi đóng
+      searchState.searchResults = [];
+      searchState.currentResultIndex = -1;
+      searchState.currentQuery = '';
+      // Không cần gọi thêm updateSearchControls() vì đã ẩn rồi
+    }
+
+    // Gắn sự kiện
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('search-input');
+      const prevBtn = document.getElementById('search-prev');
+      const nextBtn = document.getElementById('search-next');
+      const closeBtn = document.getElementById('search-close');
+
+      // ====== KHỞI TẠO: Ẩn controls và kết quả khi tải trang ======
+      document.getElementById('search-controls').style.display = 'none';
+      document.getElementById('search-results').style.display = 'none';
+      // ====== HẾT KHỞI TẠO ======
+
+      // ====== XỬ LÝ KHI NGƯỜI DÙNG TƯƠNG TÁC VỚI Ô INPUT ======
+      // Khi focus hoặc click vào input, hiển thị nút Close
+      const handleUserInteraction = () => {
+          if (input.value.trim() !== '' || event.type === 'click') {
+              document.getElementById('search-controls').style.display = 'flex';
+              // Ẩn mũi tên
+              document.getElementById('search-prev').style.display = 'none';
+              document.getElementById('search-next').style.display = 'none';
+              // Hiện close
+              document.getElementById('search-close').style.display = 'flex';
+          }
+          // Nếu có nội dung, thực hiện tìm kiếm ngay
+          if (input.value.trim().length >= 2) {
+              performSearch(input.value.trim());
+          }
+      };
+      input.addEventListener('focus', handleUserInteraction);
+      input.addEventListener('click', handleUserInteraction);
+
+      // Xử lý khi người dùng gõ vào ô tìm kiếm
+      input.addEventListener('input', () => {
+        const query = input.value.trim();
+        if (query.length >= 2) {
+          performSearch(query);
+          saveSearchHistory(query);
+        } else {
+          // Nếu ít hơn 2 ký tự, ẩn kết quả nhưng có thể vẫn hiện nút Close nếu đã có tương tác
+          document.getElementById('search-results').style.display = 'none';
+          searchState.currentQuery = query;
+          searchState.searchResults = [];
+          searchState.currentResultIndex = -1;
+          removeHighlight();
+          
+          // Nếu đã có tương tác (ví dụ gõ rồi xóa), vẫn hiện close
+          if (query.length > 0) {
+              document.getElementById('search-controls').style.display = 'flex';
+              document.getElementById('search-prev').style.display = 'none';
+              document.getElementById('search-next').style.display = 'none';
+              document.getElementById('search-close').style.display = 'flex';
+          } else {
+              // Nếu ô trống hoàn toàn, ẩn controls
+              document.getElementById('search-controls').style.display = 'none';
+          }
+        }
+      });
+      // ====== HẾT XỬ LÝ INPUT ======
+
+      // Xử lý Enter
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch(input.value.trim());
+      });
+
+      // Xử lý nút Previous
+      prevBtn.addEventListener('click', () => {
+        if (searchState.searchResults.length > 0) {
+          const prev = (searchState.currentResultIndex - 1 + searchState.searchResults.length) % searchState.searchResults.length;
+          goToResult(prev);
+        }
+      });
+
+      // Xử lý nút Next
+      nextBtn.addEventListener('click', () => {
+        if (searchState.searchResults.length > 0) {
+          const next = (searchState.currentResultIndex + 1) % searchState.searchResults.length;
+          goToResult(next);
+        }
+      });
+
+      // Xử lý nút Close
+      closeBtn.addEventListener('click', closeSearch);
+
+      // Xử lý phím Esc
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSearch();
+      });
+    });
+
+  </script>
+  </body>
+  </html>

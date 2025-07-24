@@ -1,0 +1,142 @@
+<% const activePage = 'trang-chu' %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= baiViet.tieu_de %> - MẦM NON XUÂN KHOA</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    /* CSS riêng cho trang chi tiết bài viết */
+    .chi-tiet-bai-viet {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f0f0f0;
+      position: relative;
+      overflow: hidden;
+    }
+    .chi-tiet-bai-viet-header {
+       text-align: center;
+       margin-bottom: 30px;
+       padding-bottom: 20px;
+       border-bottom: 1px solid #eee;
+    }
+    .chi-tiet-bai-viet h1 {
+      color: #d35400;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      font-family: 'Indie Flower', cursive;
+    }
+    .chi-tiet-bai-viet .meta {
+      color: #7f8c8d;
+      font-size: 0.95rem;
+    }
+    .chi-tiet-bai-viet .noi-dung {
+      line-height: 1.8;
+      color: #444;
+    }
+    .chi-tiet-bai-viet .noi-dung img {
+      display: block;
+      margin: 25px auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      border: 3px solid #fff;
+    }
+    .chi-tiet-bai-viet .noi-dung h2,
+    .chi-tiet-bai-viet .noi-dung h3 {
+      color: #e67e22;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    .chi-tiet-bai-viet .noi-dung p {
+      margin-bottom: 15px;
+    }
+    .chi-tiet-bai-viet .noi-dung ul,
+    .chi-tiet-bai-viet .noi-dung ol {
+      padding-left: 30px;
+      margin-bottom: 20px;
+    }
+    .chi-tiet-bai-viet .noi-dung li {
+      margin-bottom: 10px;
+    }
+    .chi-tiet-bai-viet .noi-dung blockquote {
+      border-left: 5px solid #FF8A65;
+      background-color: #fff9f5;
+      margin: 25px 0;
+      padding: 20px;
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+      color: #555;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      background: #FFD1DC;
+      color: #d35400;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: 2px solid #FF8A65;
+    }
+    .back-link:hover {
+      background: #FF8A65;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .chi-tiet-bai-viet {
+        padding: 25px;
+        margin: 30px auto;
+        border-radius: 15px;
+      }
+      .chi-tiet-bai-viet h1 {
+        font-size: 1.8rem;
+      }
+      .chi-tiet-bai-viet .noi-dung h2 {
+        font-size: 1.5rem;
+      }
+      .chi-tiet-bai-viet .noi-dung h3 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <%- include('header') %>
+
+  <main class="main-content">
+    <div class="chi-tiet-bai-viet">
+      <div class="chi-tiet-bai-viet-header">
+        <h1><%= baiViet.tieu_de %></h1>
+        <div class="meta">
+          Đăng bởi: <strong><%= baiViet.tac_gia || 'Admin' %></strong> |
+          Ngày: <time><%= baiViet.ngay_dang %></time>
+        </div>
+      </div>
+
+      <% if (baiViet.hinh_anh) { %>
+        <img src="<%= baiViet.hinh_anh %>" alt="<%= baiViet.tieu_de %>">
+      <% } %>
+
+      <div class="noi-dung">
+        <%- baiViet.noi_dung %>
+      </div>
+
+      <a href="javascript:history.back()" class="back-link">← Quay lại</a>
+      <!-- Hoặc quay lại trang chủ: <a href="/" class="back-link">← Trang chủ</a> -->
+    </div>
+  </main>
+
+  <%- include('footer') %>
+</body>
+</html>

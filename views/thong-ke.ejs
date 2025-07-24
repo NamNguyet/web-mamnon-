@@ -1,0 +1,179 @@
+<% const activePage = 'thong-ke' %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thống kê - MẦM NON XUÂN KHOA</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <!-- ✅ Sửa lỗi: Xóa khoảng trắng dư trong URL -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .chart-container {
+      width: 80%;
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px auto;
+      max-width: 1000px;
+    }
+    .stat-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      border-left: 5px solid #f39c12;
+    }
+    .stat-card h3 {
+      color: #d35400;
+      margin-bottom: 10px;
+    }
+    .stat-card p.value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #e67e22;
+    }
+    .loader {
+      text-align: center;
+      padding: 50px;
+      font-size: 1.2rem;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🌼 MẦM NON XUÂN KHOA</div>
+    <nav>
+  <ul>
+    <li><a href="/" class="<%= activePage === 'trang-chu' ? 'active' : '' %>">Trang chủ</a></li>
+    
+    <li class="dropdown">
+      <a href="#" class="dropbtn <%= activePage === 'gioi-thieu' ? 'active' : '' %>">
+        Giới thiệu <span class="arrow">▼</span>
+      </a>
+      <ul class="dropdown-content">
+        <li><a href="/gioi-thieu-chung">Giới thiệu chung</a></li>
+        <li><a href="/co-so-vat-chat">Cơ sở vật chất</a></li>
+        <li><a href="/doi-ngu-giao-vien">Đội ngũ giáo viên</a></li>
+        <li><a href="/quan-diem-giao-duc">Quan điểm giáo dục</a></li>
+        <li><a href="/muc-tieu-dao-tao">Mục tiêu đào tạo</a></li>
+      </ul>
+    </li>
+
+    <li><a href="/tuyen-sinh" class="<%= activePage === 'tuyen-sinh' ? 'active' : '' %>">Tuyển sinh</a></li>
+    <li><a href="/cong-khai" class="<%= activePage === 'cong-khai' ? 'active' : '' %>">Công khai</a></li>
+    <li><a href="/thong-ke" class="<%= activePage === 'thong-ke' ? 'active' : '' %>">Thống kê</a></li>
+    <li><a href="/lien-he" class="<%= activePage === 'lien-he' ? 'active' : '' %>">Liên hệ</a></li>
+  </ul>
+</nav>
+  </header>
+
+  <div class="container">
+    <h1>📊 Số liệu thống kê chuyên nghiệp</h1>
+    <p><em>Cập nhật từ hệ thống quản lý học sinh – Dữ liệu tự động</em></p>
+
+    <!-- ✅ DUY NHẤT 1 KHỐI SỐ LIỆU TỔNG QUAN -->
+    <div id="stats-cards" class="stats-grid">
+      <div class="loader">Đang tải số liệu...</div>
+    </div>
+
+    <!-- Biểu đồ học sinh theo độ tuổi -->
+    <div class="chart-container">
+      <h2>👶 Học sinh theo độ tuổi</h2>
+      <canvas id="ageChart"></canvas>
+    </div>
+
+    <!-- Biểu đồ tình trạng học tập -->
+    <div class="chart-container">
+      <h2>📈 Tình trạng học tập</h2>
+      <canvas id="progressChart"></canvas>
+    </div>
+
+    <p style="text-align: center; color: #7f8c8d; font-style: italic;">
+      Cập nhật: <span id="updateTime"></span>
+    </p>
+  </div>
+
+  <!-- ✅ DUY NHẤT 1 SCRIPT: GỌI API + VẼ BIỂU ĐỒ -->
+  <script>
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => {
+        // Cập nhật tất cả số liệu vào cùng một lưới
+        document.getElementById('stats-cards').innerHTML = `
+          <div class="stat-card">
+            <h3>Tổng học sinh</h3>
+            <p class="value">${data.totalStudents}</p>
+            <p>Đang theo học</p>
+          </div>
+          <div class="stat-card">
+            <h3>Nhóm tuổi</h3>
+            <p class="value">${data.ageGroups.length}</p>
+            <p>Theo độ tuổi</p>
+          </div>
+          <div class="stat-card">
+            <h3>Số lớp học</h3>
+            <p class="value">${data.totalClasses}</p>
+            <p>Hiện tại</p>
+          </div>
+          <div class="stat-card">
+            <h3>Số giáo viên</h3>
+            <p class="value">${data.totalTeachers}</p>
+            <p>Đang giảng dạy</p>
+          </div>
+          <div class="stat-card">
+            <h3>Tỷ lệ GV/HS</h3>
+            <p class="value">1:${data.ratio}</p>
+            <p>(Giáo viên / Học sinh)</p>
+          </div>
+        `;
+
+        // Cập nhật thời gian
+        document.getElementById('updateTime').textContent = new Date().toLocaleString();
+
+        // Biểu đồ: Theo độ tuổi
+        const ageCtx = document.getElementById('ageChart').getContext('2d');
+        new Chart(ageCtx, {
+          type: 'bar',
+          data: {
+            labels: data.ageGroups.map(d => d.label),
+            datasets: [{
+              label: 'Số lượng',
+              data: data.ageGroups.map(d => d.value),
+              backgroundColor: '#f39c12'
+            }]
+          },
+          options: { responsive: true, scales: { y: { beginAtZero: true } } }
+        });
+
+        // Biểu đồ: Tình trạng
+        const progressCtx = document.getElementById('progressChart').getContext('2d');
+        new Chart(progressCtx, {
+          type: 'pie',
+          data: {
+            labels: data.studentStatus.map(d => d.label),
+            datasets: [{
+              data: data.studentStatus.map(d => d.value),
+              backgroundColor: ['#27ae60', '#f39c12', '#e74c3c']
+            }]
+          }
+        });
+      })
+      .catch(err => {
+        alert("Lỗi tải số liệu! Vui lòng kiểm tra server.");
+        console.error(err);
+      });
+  </script>
+
+</body>
+</html>

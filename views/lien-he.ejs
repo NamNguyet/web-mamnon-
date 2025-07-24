@@ -1,0 +1,162 @@
+<% const activePage = 'lien-he' %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Liên hệ - MẦM NON XUÂN KHOA</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <!-- Font Awesome cho icon (nếu chưa có ở layout chung) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo">🌼 MẦM NON XUÂN KHOA</div>
+    <nav>
+      <ul>
+        <li><a href="/" class="<%= activePage === 'trang-chu' ? 'active' : '' %>">Trang chủ</a></li>
+        
+        <li class="dropdown">
+          <a href="#" class="dropbtn <%= activePage === 'gioi-thieu' ? 'active' : '' %>">
+            Giới thiệu <span class="arrow">▼</span>
+          </a>
+          <ul class="dropdown-content">
+            <li><a href="/gioi-thieu-chung">Giới thiệu chung</a></li>
+            <li><a href="/co-so-vat-chat">Cơ sở vật chất</a></li>
+            <li><a href="/doi-ngu-giao-vien">Đội ngũ giáo viên</a></li>
+            <li><a href="/quan-diem-giao-duc">Quan điểm giáo dục</a></li> <!-- Sửa lỗi chính tả -->
+            <li><a href="/muc-tieu-dao-tao">Mục tiêu đào tạo</a></li>
+          </ul>
+        </li>
+
+        <li><a href="/tuyen-sinh" class="<%= activePage === 'tuyen-sinh' ? 'active' : '' %>">Tuyển sinh</a></li>
+        <li><a href="/cong-khai" class="<%= activePage === 'cong-khai' ? 'active' : '' %>">Công khai</a></li>
+        <li><a href="/thong-ke" class="<%= activePage === 'thong-ke' ? 'active' : '' %>">Thống kê</a></li>
+        <li><a href="/lien-he" class="<%= activePage === 'lien-he' ? 'active' : '' %>">Liên hệ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>📞 Liên hệ với chúng tôi</h1>
+
+    <!-- === PHẦN CONTACT CARDS VÀ FORM === -->
+    <div class="contact-layout">
+      
+      <!-- --- CỘT 1: Danh sách liên hệ (Cards) --- -->
+      <div class="contact-cards">
+        <!-- Card Hiệu trưởng -->
+        <div class="contact-card">
+          <div class="card-header">
+            <!-- Placeholder ảnh, thay bằng ảnh thật -->
+            <img src="https://placehold.co/100x100?text=HT" alt="Ảnh Hiệu trưởng" class="card-img">
+            <div>
+              <!-- Thay bằng tên thật -->
+              <h3 class="card-name">Nguyễn Văn A</h3>
+              <p class="card-title">Hiệu trưởng</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- Thay bằng thông tin thật -->
+            <p><strong>ĐT:</strong> 0912 345 678</p>
+            <p><strong>Email:</strong> hieutruong@mamnonxuankhoa.edu.vn</p>
+          </div>
+        </div>
+
+        <!-- Card Hiệu phó -->
+        <div class="contact-card">
+          <div class="card-header">
+            <!-- Placeholder ảnh, thay bằng ảnh thật -->
+            <img src="https://placehold.co/100x100?text=HP" alt="Ảnh Hiệu phó" class="card-img">
+            <div>
+              <!-- Thay bằng tên thật -->
+              <h3 class="card-name">Trần Thị B</h3>
+              <p class="card-title">Hiệu phó</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- Thay bằng thông tin thật -->
+            <p><strong>ĐT:</strong> 0987 654 321</p>
+            <p><strong>Email:</strong> hieupho@mamnonxuankhoa.edu.vn</p>
+          </div>
+        </div>
+
+        <!-- Card Thông tin Trường -->
+        <div class="contact-card info-only">
+          <h3 class="card-name">MẦM NON XUÂN KHOA</h3>
+          <div class="card-body">
+            <!-- Thay bằng thông tin thật -->
+            <p><strong>Địa chỉ:</strong> 123 Đường ABC, Quận XYZ, TP. HCM</p>
+            <p><strong>ĐT:</strong> (028) 1234 5678</p>
+            <p><strong>Email:</strong> info@mamnonxuankhoa.edu.vn</p>
+            <p><strong>Website:</strong> www.mamnonxuankhoa.edu.vn</p>
+          </div>
+        </div>
+      </div>
+      <!-- --- HẾT CỘT 1 --- -->
+
+      <!-- --- CỘT 2: Form gửi mail --- -->
+      <div class="contact-form">
+        <h2>Gửi tin nhắn cho chúng tôi</h2>
+        <p style="margin-bottom: 20px; text-align: center; color: #7f8c8d;">Để lại tin nhắn, chúng tôi sẽ phản hồi trong 24 giờ.</p>
+        <!-- Giữ nguyên action và method của form -->
+        <form action="/contact" method="POST">
+          <label for="contact_name">Họ tên *</label>
+          <input type="text" id="contact_name" name="name" required>
+
+          <label for="contact_email">Email *</label>
+          <input type="email" id="contact_email" name="email" required>
+
+          <label for="contact_phone">Số điện thoại</label>
+          <input type="tel" id="contact_phone" name="phone">
+
+          <label for="contact_message">Nội dung *</label>
+          <textarea id="contact_message" name="message" rows="5" required placeholder="Nhập nội dung tin nhắn..."></textarea>
+
+          <button type="submit" class="btn">Gửi tin nhắn</button>
+        </form>
+      </div>
+      <!-- --- HẾT CỘT 2 --- -->
+
+    </div>
+    <!-- === HẾT PHẦN CONTACT LAYOUT === -->
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>🌼 TRƯỜNG MẦM NON XUÂN KHOA</h2>
+        <p>Nơi ươm mầm yêu thương</p>
+      </div>
+
+      <div class="footer-info">
+        <h3>📍 Thông tin liên hệ</h3>
+        <!-- Thay bằng thông tin thật -->
+        <p>🏠 123 Đường ABC, Quận XYZ, TP. HCM</p>
+        <p>📞 <a href="tel:0912345678">0912 345 678</a></p>
+        <p>✉️ <a href="mailto:info@mamnonxuankhoa.edu.vn">info@mamnonxuankhoa.edu.vn</a></p>
+        <p>⏰ Làm việc: Thứ Hai - Thứ Sáu, 7:00 - 17:00</p>
+      </div>
+
+      <div class="footer-map">
+        <h3>📍 Bản đồ Google</h3>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.942897087083!2d105.78327737471447!3d21.04385608060021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3a2f7a43d9%3A0x1234567890abcdef!2zVHLGsOG7nW5nIE3huq1tIE5vbiBYdcOibSBLaG9h!5e0!3m2!1svi!2s!4v1234567890123!5m2!1svi!2s" 
+          width="100%" 
+          height="150" 
+          style="border:0; border-radius: 10px;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 MẦM NON XUÂN KHOA.🌼</p>
+    </div>
+  </footer>
+</body>
+</html>
